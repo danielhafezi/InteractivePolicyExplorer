@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Interactive Policy Explorer',
-  description: 'A Gemini-Powered Economic Policy Simulation Tool',
+  description: 'An AI-Powered Economic Policy Simulation Tool',
 };
 
 export default function RootLayout({

@@ -75,7 +75,7 @@ export default function Home() {
       <Card className="mb-8">
         <CardHeader className="text-center">
           <CardTitle className="text-4xl text-foreground">Interactive Policy Explorer</CardTitle>
-          <CardDescription className="text-xl text-muted-foreground">A Gemini-Powered Economic Policy Simulation Tool</CardDescription>
+          <CardDescription className="text-xl text-muted-foreground">An AI-Powered Economic Policy Simulation Tool</CardDescription>
         </CardHeader>
       </Card>
 
@@ -151,6 +151,9 @@ export default function Home() {
             </CardContent>
           </Card>
         </div>
+      </div>
+      <div className="text-center text-sm text-muted-foreground mt-8">
+        Developed by <a href="https://danielhafezi.github.io" target="_blank" rel="noopener noreferrer" className="hover:underline">Daniel Hafezi</a>
       </div>
     </div>
   );

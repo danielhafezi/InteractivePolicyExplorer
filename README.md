@@ -1,5 +1,8 @@
 # Interactive Policy Explorer
 
+![Project Overview](overview.gif)
+
+
 A Next.js application that demonstrates the capabilities of Large Language Models (specifically Google's Gemini Flash 2) in economic policy simulation. This tool allows users to explore how various economic and technological transition policies might impact different socio-economic groups through an intuitive visual interface.
 
 ## Features
@@ -20,8 +23,7 @@ A Next.js application that demonstrates the capabilities of Large Language Model
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/interactive-policy-explorer.git
-   cd interactive-policy-explorer
+   git clone https://github.com/danielhafezi/InteractivePolicyeExplorer.git
    ```
 
 2. Install the dependencies:
