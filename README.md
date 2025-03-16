@@ -1,6 +1,6 @@
 # Interactive Policy Explorer
 
-![Project Overview](overview.gif)
+![Project Overview](/public/overview.gif)
 
 
 A Next.js application that demonstrates the capabilities of Large Language Models (specifically Google's Gemini Flash 2) in economic policy simulation. This tool allows users to explore how various economic and technological transition policies might impact different socio-economic groups through an intuitive visual interface.
