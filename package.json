@@ -2,40 +2,29 @@
   "name": "interactive-policy-explorer",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.13.0",
-    "d3": "^7.8.4",
+    "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.11.0",
-    "axios": "^1.4.0",
-    "zustand": "^4.3.8"
+    "typescript": "^5.3.3",
+    "d3": "^7.8.5",
+    "tailwindcss": "^3.4.1",
+    "@google/generative-ai": "^0.2.0"
   },
   "devDependencies": {
-    "@types/d3": "^7.4.0",
-    "@types/node": "^18.16.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.5",
-    "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.39.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
-  },
-  "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "@types/react": "^18.2.52",
+    "@types/react-dom": "^18.2.18",
+    "@types/node": "^20.11.16",
+    "@types/d3": "^7.4.3",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0"
   }
-}
+} 
