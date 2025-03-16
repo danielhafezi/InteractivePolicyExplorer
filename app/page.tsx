@@ -5,6 +5,9 @@ import PolicyInput from './components/PolicyInput';
 import GroupSelector from './components/GroupSelector';
 import SimulationResults from './components/SimulationResults';
 import { Policy, SocioEconomicGroup, SimulationResponse, socioEconomicGroups } from './lib/gemini';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [policy, setPolicy] = useState<Policy | null>(null);
@@ -68,64 +71,85 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <div className="container mx-auto py-8 px-4">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-blue-900 mb-2">
-            Interactive Policy Explorer
-          </h1>
-          <p className="text-xl text-blue-700">
-            A Gemini-Powered Economic Policy Simulation Tool
-          </p>
-        </header>
+    <div className="container max-w-7xl mx-auto py-8 px-4">
+      <Card className="mb-8">
+        <CardHeader className="text-center">
+          <CardTitle className="text-4xl text-foreground">Interactive Policy Explorer</CardTitle>
+          <CardDescription className="text-xl text-muted-foreground">A Gemini-Powered Economic Policy Simulation Tool</CardDescription>
+        </CardHeader>
+      </Card>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <div>
-            <PolicyInput onPolicyChange={handlePolicyChange} />
-            
-            <div className="mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-foreground">Configure Policy</CardTitle>
+              <CardDescription>Set parameters for your economic policy</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <PolicyInput onPolicyChange={handlePolicyChange} />
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-foreground">Select Target Group</CardTitle>
+              <CardDescription>Choose which socio-economic group to analyze</CardDescription>
+            </CardHeader>
+            <CardContent>
               <GroupSelector onGroupSelect={handleGroupSelect} />
-            </div>
-            
-            <div className="mt-6 bg-white/10 p-6 rounded-lg border border-gray-300">
-              <h2 className="text-2xl font-semibold mb-4">API Configuration</h2>
-              <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-foreground">API Configuration</CardTitle>
+              <CardDescription>Connect to Gemini API</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">
                   Gemini API Key
                 </label>
-                <input
+                <Input
                   type="password"
                   value={apiKey}
                   onChange={handleApiKeyChange}
                   placeholder="Enter your Gemini API key"
-                  className="w-full p-2 border rounded-md"
+                  className="text-foreground"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-muted-foreground">
                   Get your API key from Google AI Studio
                 </p>
               </div>
-              
-              <button
+            </CardContent>
+            <CardFooter>
+              <Button 
+                className="w-full" 
                 onClick={runSimulation}
                 disabled={isLoading}
-                className={`w-full py-2 px-4 rounded-md font-medium ${
-                  isLoading
-                    ? 'bg-gray-400 cursor-not-allowed text-gray-100'
-                    : 'bg-blue-600 hover:bg-blue-700 text-gray-100'
-                }`}
+                variant="default"
               >
                 {isLoading ? 'Simulating...' : 'Run Simulation'}
-              </button>
-            </div>
-          </div>
-          
-          <div>
-            <SimulationResults
-              results={results}
-              isLoading={isLoading}
-              error={error}
-            />
-          </div>
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+        
+        <div>
+          <Card className="h-full">
+            <CardHeader>
+              <CardTitle className="text-foreground">Simulation Results</CardTitle>
+              <CardDescription>Analysis of policy impact</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <SimulationResults
+                results={results}
+                isLoading={isLoading}
+                error={error}
+              />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

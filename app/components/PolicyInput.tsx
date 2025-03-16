@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { Policy } from '@/app/lib/gemini';
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Slider } from "@/components/ui/slider";
+import { Label } from "@/components/ui/label";
 
 // Define available policy categories
 const policyCategories = [
@@ -79,61 +84,50 @@ export default function PolicyInput({ onPolicyChange }: PolicyInputProps) {
   };
 
   return (
-    <div className="bg-white/10 p-6 rounded-lg border border-gray-300">
-      <h2 className="text-2xl font-semibold mb-4">Configure Policy</h2>
-      
+    <div className="space-y-6">
       {/* Policy Category Selection */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium mb-2">Policy Category</label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+      <Tabs defaultValue={selectedCategory} onValueChange={handleCategoryChange}>
+        <TabsList className="grid w-full grid-cols-3">
           {policyCategories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => handleCategoryChange(category.id)}
-              className={`p-2 rounded-md ${
-                selectedCategory === category.id
-                  ? 'bg-blue-600 text-gray-100'
-                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-              }`}
-            >
+            <TabsTrigger key={category.id} value={category.id} className="text-foreground">
               {category.name}
-            </button>
+            </TabsTrigger>
           ))}
-        </div>
-      </div>
-      
-      {/* Parameter Sliders */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium mb-2">Policy Parameters</label>
-        {categoryParameters[selectedCategory]?.map(param => (
-          <div key={param.name} className="mb-4">
-            <div className="flex justify-between">
-              <label className="text-sm capitalize">
-                {param.name.replace(/([A-Z])/g, ' $1').trim()}
-              </label>
-              <span className="text-sm">{parameters[param.name] || param.defaultValue}</span>
-            </div>
-            <input
-              type="range"
-              min={param.min}
-              max={param.max}
-              step={param.step}
-              value={parameters[param.name] || param.defaultValue}
-              onChange={(e) => handleParameterChange(param.name, Number(e.target.value))}
-              className="w-full mt-1"
-            />
-          </div>
+        </TabsList>
+        
+        {policyCategories.map(category => (
+          <TabsContent key={category.id} value={category.id} className="space-y-4 mt-4">
+            {categoryParameters[category.id]?.map(param => (
+              <div key={param.name} className="space-y-2">
+                <div className="flex justify-between">
+                  <Label className="text-sm capitalize text-foreground">
+                    {param.name.replace(/([A-Z])/g, ' $1').trim()}
+                  </Label>
+                  <span className="text-sm font-medium text-foreground">
+                    {parameters[param.name] || param.defaultValue}
+                  </span>
+                </div>
+                <Slider
+                  min={param.min}
+                  max={param.max}
+                  step={param.step}
+                  value={[parameters[param.name] || param.defaultValue]}
+                  onValueChange={(values) => handleParameterChange(param.name, values[0])}
+                />
+              </div>
+            ))}
+          </TabsContent>
         ))}
-      </div>
+      </Tabs>
       
       {/* Custom Description */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Custom Policy Description (Optional)</label>
-        <textarea
+      <div className="space-y-2">
+        <Label className="text-foreground">Custom Policy Description (Optional)</Label>
+        <Textarea
           value={customDescription}
           onChange={handleDescriptionChange}
           placeholder="Describe your custom policy approach..."
-          className="w-full p-2 border rounded-md bg-gray-100 text-gray-800"
+          className="resize-none text-foreground"
           rows={4}
         />
       </div>
